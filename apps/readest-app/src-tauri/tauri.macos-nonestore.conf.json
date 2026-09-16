@@ -3,7 +3,7 @@
     "macOS": {
       "entitlements": "./profiles/direct-entitlements.plist",
       "files": {
-        "embedded.provisionprofile": "./profiles/ReadestDeveloperID.provisionprofile"
+        "embedded.provisionprofile": "./profiles/YiweiDeveloperID.provisionprofile"
       }
     }
   }

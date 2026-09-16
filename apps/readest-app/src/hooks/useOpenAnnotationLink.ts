@@ -34,9 +34,9 @@ let coldStartConsumed = false;
  *     library store has hydrated. Stash and replay once libraryLoaded.
  *
  * Supported URL shapes (see src/utils/deeplink.ts):
- *   readest://book/{hash}/annotation/{id}?cfi=...
+ *   yiwei://book/{hash}/annotation/{id}?cfi=...
  *   https://web.readest.com/o/book/{hash}/annotation/{id}?cfi=...
- *   readest://annotation/{hash}/{id}            (legacy Readwise sync)
+ *   yiwei://annotation/{hash}/{id}            (legacy Readwise sync)
  *
  * Already-open shortcut: if the target book has a mounted view, jump in
  * place via view.goTo(cfi). router.push to the same /reader path with a

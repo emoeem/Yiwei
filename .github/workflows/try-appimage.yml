@@ -142,7 +142,7 @@ jobs:
       - name: verify the AppImage bundle contents (linux only)
         run: |
           set -euo pipefail
-          lib=target/release/bundle/appimage/Readest.AppDir/lib
+          lib=target/release/bundle/appimage/Yiwei.AppDir/lib
           for so in libsoftokn3.so libfreeblpriv3.so libnssckbi.so libsqlite3.so.0 \
                     libpulse.so.0 libspeechd.so.2 libxkbcommon-x11.so.0; do
             [ -e "$lib/$so" ] || { echo "::error::$so is missing from the AppImage bundle"; exit 1; }

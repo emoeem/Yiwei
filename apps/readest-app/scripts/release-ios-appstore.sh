@@ -8,7 +8,7 @@ set -euo pipefail
 pnpm tauri ios build --export-method app-store-connect
 
 BUNDLE_DIR=src-tauri/gen/apple/build/arm64
-IPA_BUNDLE=$BUNDLE_DIR/Readest.ipa
+IPA_BUNDLE=$BUNDLE_DIR/Yiwei.ipa
 
 # Tauri signs only the main app binary at archive time, so the widget / share
 # extensions enter -exportArchive unsigned and the export re-sign drops the App
@@ -21,7 +21,7 @@ bash scripts/fix-ios-appstore-appgroup.sh "$IPA_BUNDLE"
 # from the widget / share extensions, or the reading widget ships dead. With
 # `set -e` above, a failure here aborts the release before upload.
 #
-# NOTE: the build uses the committed src-tauri/gen/apple/Readest.xcodeproj as-is
+# NOTE: the build uses the committed src-tauri/gen/apple/Yiwei.xcodeproj as-is
 # (Tauri does not re-run xcodegen). If you change project.yml (e.g. #4891
 # removing CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION from the app extensions),
 # regenerate the project and commit it:

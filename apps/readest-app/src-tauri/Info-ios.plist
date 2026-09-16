@@ -5,7 +5,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>en</string>
     <key>NSLocalNetworkUsageDescription</key>
-    <string>Readest uses the local network to discover nearby devices and transfer books with Nearby BookDrop.</string>
+    <string>Yiwei uses the local network to discover nearby devices and transfer books with Nearby BookDrop.</string>
     <key>CFBundleLocalizations</key>
     <array>
       <string>en</string>
@@ -51,39 +51,33 @@
          without this key TCC terminates the app on the first attempt (#5397)
          and iOS hides "Save Image" from the share sheet entirely. -->
     <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>Readest needs access to save images from your books to your photo library.</string>
+    <string>Yiwei needs access to save images from your books to your photo library.</string>
     <key>CFBundleURLTypes</key>
     <array>
       <dict>
         <key>CFBundleURLName</key>
-        <string>com.bilingify.readest</string>
+        <string>com.yiwei.reader</string>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>readest</string>
+          <string>yiwei</string>
         </array>
       </dict>
-      <!-- Google Drive OAuth reverse-DNS redirect (iOS-type client). The
-           ASWebAuthenticationSession matches on this scheme; mirrors the
-           gdrive-oauth filter in AndroidManifest.xml and the deep-link.mobile
-           scheme in tauri.conf.json. -->
-      <dict>
-        <key>CFBundleURLName</key>
-        <string>com.googleusercontent.apps.gdrive-oauth</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>com.googleusercontent.apps.209390247301-ctpmep68ppfa56r1b8tr35e4qi4p60kq</string>
-        </array>
-      </dict>
+      <!-- Google Drive OAuth reverse-DNS redirect intentionally removed: the
+           scheme upstream shipped here belongs to Readest's Google OAuth
+           client (209390247301), so leaving it would route Drive consent to
+           their app. Add a dict back with your own iOS-type client id (and
+           mirror it in AndroidManifest.xml, tauri.conf.json's deep-link.mobile
+           and the gdrive-oauth filter) to enable Drive import. -->
       <!-- OneDrive OAuth redirect. The ASWebAuthenticationSession matches on
            this scheme; mirrors the onedrive-oauth filter in
            AndroidManifest.xml and the deep-link.mobile scheme in
            tauri.conf.json. -->
       <dict>
         <key>CFBundleURLName</key>
-        <string>com.bilingify.readest.onedrive-oauth</string>
+        <string>com.yiwei.reader.onedrive-oauth</string>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>readest-onedrive</string>
+          <string>yiwei-onedrive</string>
         </array>
       </dict>
     </array>
@@ -108,12 +102,12 @@
     </dict>
     <key>NSUbiquitousContainers</key>
     <dict>
-      <key>iCloud.com.bilingify.readest</key>
+      <key>iCloud.com.yiwei.reader</key>
       <dict>
         <key>NSUbiquitousContainerIsDocumentScopePublic</key>
         <true/>
         <key>NSUbiquitousContainerName</key>
-        <string>Readest</string>
+        <string>Yiwei</string>
         <key>NSUbiquitousContainerSupportedFolderLevels</key>
         <string>Any</string>
       </dict>

@@ -34,7 +34,7 @@ describe('reverseDnsRedirect', () => {
 
   test('does not match a different scheme or a prefix scheme', () => {
     const scheme = deriveReverseDnsRedirectScheme(CLIENT_ID);
-    expect(matchesReverseDnsRedirect('readest://auth-callback', scheme)).toBe(false);
+    expect(matchesReverseDnsRedirect('yiwei://auth-callback', scheme)).toBe(false);
     // A scheme that is a strict prefix of a longer one must not false-match.
     expect(matchesReverseDnsRedirect(`${scheme}extra:/x`, scheme)).toBe(false);
   });
@@ -45,7 +45,7 @@ describe('reverseDnsRedirect', () => {
     ).toBe(true);
     expect(isGoogleOAuthRedirectUrl(deriveReverseDnsRedirectUri(CLIENT_ID))).toBe(true);
     // Real app/book URLs must pass through to the consumers untouched.
-    expect(isGoogleOAuthRedirectUrl('readest://auth-callback')).toBe(false);
+    expect(isGoogleOAuthRedirectUrl('yiwei://auth-callback')).toBe(false);
     expect(isGoogleOAuthRedirectUrl('file:///Users/me/book.epub')).toBe(false);
     expect(isGoogleOAuthRedirectUrl('https://web.readest.com/s/abc')).toBe(false);
   });

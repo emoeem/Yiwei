@@ -465,8 +465,8 @@ jobs:
           popd
           version=${{ needs.get-release.outputs.release_version }}
           apk_path=src-tauri/gen/android/app/build/outputs/apk/universal/release
-          universial_apk=Readest_${version}_universal.apk
-          arm64_apk=Readest_${version}_arm64.apk
+          universial_apk=Yiwei_${version}_universal.apk
+          arm64_apk=Yiwei_${version}_arm64.apk
           pnpm tauri android build
           cp ${apk_path}/app-universal-release.apk $universial_apk
           pnpm tauri android build -t aarch64
@@ -487,8 +487,8 @@ jobs:
         uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
         with:
           subject-path: |
-            apps/readest-app/Readest_${{ needs.get-release.outputs.release_version }}_universal.apk
-            apps/readest-app/Readest_${{ needs.get-release.outputs.release_version }}_arm64.apk
+            apps/readest-app/Yiwei_${{ needs.get-release.outputs.release_version }}_universal.apk
+            apps/readest-app/Yiwei_${{ needs.get-release.outputs.release_version }}_arm64.apk
 
       - name: download and update latest.json for Android release
         if: matrix.config.release == 'android'
@@ -510,11 +510,11 @@ jobs:
           fi
 
           version=${{ needs.get-release.outputs.release_version }}
-          universial_apk_url="https://github.com/readest/readest/releases/download/${{ needs.get-release.outputs.release_tag }}/Readest_${version}_universal.apk"
-          arm64_apk_url="https://github.com/readest/readest/releases/download/${{ needs.get-release.outputs.release_tag }}/Readest_${version}_arm64.apk"
+          universial_apk_url="https://github.com/readest/readest/releases/download/${{ needs.get-release.outputs.release_tag }}/Yiwei_${version}_universal.apk"
+          arm64_apk_url="https://github.com/readest/readest/releases/download/${{ needs.get-release.outputs.release_tag }}/Yiwei_${version}_arm64.apk"
 
-          universial_sig=$(cat Readest_${version}_universal.apk.sig)
-          arm64_sig=$(cat Readest_${version}_arm64.apk.sig)
+          universial_sig=$(cat Yiwei_${version}_universal.apk.sig)
+          arm64_sig=$(cat Yiwei_${version}_arm64.apk.sig)
 
           jq --arg url "$universial_apk_url" \
               --arg sig "$universial_sig" \
@@ -563,7 +563,7 @@ jobs:
         if: matrix.config.release == 'linux'
         run: |
           set -euo pipefail
-          lib=target/release/bundle/appimage/Readest.AppDir/lib
+          lib=target/release/bundle/appimage/Yiwei.AppDir/lib
           for so in libsoftokn3.so libfreeblpriv3.so libnssckbi.so libsqlite3.so.0 \
                     libpulse.so.0 libspeechd.so.2 libxkbcommon-x11.so.0; do
             [ -e "$lib/$so" ] || { echo "::error::$so is missing from the AppImage bundle"; exit 1; }
@@ -616,9 +616,9 @@ jobs:
           version=${{ needs.get-release.outputs.release_version }}
 
           if [ "$arch" = "x86_64" ]; then
-            bin_file="Readest_${version}_x64-portable.exe"
+            bin_file="Yiwei_${version}_x64-portable.exe"
           elif [ "$arch" = "aarch64" ]; then
-            bin_file="Readest_${version}_arm64-portable.exe"
+            bin_file="Yiwei_${version}_arm64-portable.exe"
           else
             echo "Unknown architecture: $arch"
             exit 1
@@ -647,7 +647,7 @@ jobs:
         if: matrix.config.os == 'windows-latest'
         uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
         with:
-          subject-path: Readest_*-portable.exe
+          subject-path: Yiwei_*-portable.exe
 
       - name: download and update latest.json for Windows portable release
         if: matrix.config.os == 'windows-latest'
@@ -672,10 +672,10 @@ jobs:
           arch=${{ matrix.config.arch }}
 
           if [ "$arch" = "x86_64" ]; then
-            bin_file="Readest_${version}_x64-portable.exe"
+            bin_file="Yiwei_${version}_x64-portable.exe"
             platform_key="windows-x86_64-portable"
           elif [ "$arch" = "aarch64" ]; then
-            bin_file="Readest_${version}_arm64-portable.exe"
+            bin_file="Yiwei_${version}_arm64-portable.exe"
             platform_key="windows-aarch64-portable"
           else
             echo "Unknown architecture: $arch"

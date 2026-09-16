@@ -1,6 +1,6 @@
-name: Readest
+name: Yiwei
 options:
-  bundleIdPrefix: com.bilingify.readest
+  bundleIdPrefix: com.yiwei.reader
   deploymentTarget:
     iOS: 16.4
 fileGroups: [../../src]
@@ -14,9 +14,8 @@ configs:
 settingGroups:
   app:
     base:
-      PRODUCT_NAME: Readest
-      PRODUCT_BUNDLE_IDENTIFIER: com.bilingify.readest
-      DEVELOPMENT_TEAM: J5W48D69VR
+      PRODUCT_NAME: Yiwei
+      PRODUCT_BUNDLE_IDENTIFIER: com.yiwei.reader
 targetTemplates:
   app:
     type: application
@@ -29,13 +28,13 @@ targetTemplates:
     settings:
       groups: [app]
 targets:
-  Readest_iOS:
+  Yiwei_iOS:
     type: application
     platform: iOS
     # NOTE on In-App Purchase capability
     # ----------------------------------
     # IAP is enabled at three layers:
-    #   1. App ID `com.bilingify.readest` services (Apple Developer
+    #   1. App ID `com.yiwei.reader` services (Apple Developer
     #      portal) — must have "In-App Purchase" service ON.
     #   2. Provisioning profile — pulled automatically by Xcode when
     #      DEVELOPMENT_TEAM is set; inherits IAP from the App ID.
@@ -58,17 +57,17 @@ targets:
       # as a source caused xcodegen to add copy-resource phases for
       # both `debug/libapp.a` and `release/libapp.a`, conflicting at
       # build time:
-      #   "Multiple commands produce Readest.app/libapp.a"
+      #   "Multiple commands produce Yiwei.app/libapp.a"
       - path: Externals
         buildPhase: none
-      - path: Readest_iOS
+      - path: Yiwei_iOS
       - path: assets
         buildPhase: resources
         type: folder
       - path: LaunchScreen.storyboard
     # Info.plist and entitlements live on disk with hand-tuned content
     # (CFBundleDocumentTypes, UTExportedTypeDeclarations, locales,
-    # CFBundleURLTypes for readest://, com.apple.developer.applesignin,
+    # CFBundleURLTypes for yiwei://, com.apple.developer.applesignin,
     # associated-domains for Universal Links). Reference them via
     # INFOPLIST_FILE / CODE_SIGN_ENTITLEMENTS instead of `info:` /
     # `entitlements:` so xcodegen treats them as opaque inputs and
@@ -79,8 +78,8 @@ targets:
         RUST_LOG: info
     settings:
       base:
-        INFOPLIST_FILE: Readest_iOS/Info.plist
-        CODE_SIGN_ENTITLEMENTS: Readest_iOS/Readest_iOS.entitlements
+        INFOPLIST_FILE: Yiwei_iOS/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Yiwei_iOS/Yiwei_iOS.entitlements
         ENABLE_BITCODE: false
         ARCHS: [arm64]
         VALID_ARCHS: arm64
@@ -90,7 +89,7 @@ targets:
         # Tell Xcode the app embeds Swift code (the new ShareExtension
         # is a Swift app-extension target). Without this the
         # swift-stdlib-tool phase that copies libswiftCore.dylib +
-        # friends into Readest.app/Frameworks runs incorrectly under
+        # friends into Yiwei.app/Frameworks runs incorrectly under
         # Xcode 26 — the app launches and immediately dyld-fails with
         # "libswiftCore.dylib: no such file".
         EMBEDDED_CONTENT_CONTAINS_SWIFT_CODE: YES
@@ -105,7 +104,7 @@ targets:
       - target: ShareExtension
         embed: true
         codeSign: true
-      - target: ReadestWidget
+      - target: YiweiWidget
         embed: true
         codeSign: true
       - sdk: CoreGraphics.framework
@@ -127,8 +126,8 @@ targets:
           - $(SRCROOT)/Externals/arm64/${CONFIGURATION}/libapp.a
 
   # Share-sheet extension that lets users send article URLs from Safari /
-  # Chrome / etc. directly to Readest. The extension grabs the URL via
-  # NSExtensionContext, encodes it into `readest://share?url=...`, and
+  # Chrome / etc. directly to Yiwei. The extension grabs the URL via
+  # NSExtensionContext, encodes it into `yiwei://share?url=...`, and
   # opens the main app — which catches the deep-link via
   # `tauri-plugin-deep-link` and runs the clip-and-import pipeline.
   ShareExtension:
@@ -150,7 +149,7 @@ targets:
     info:
       path: ShareExtension/Info.plist
       properties:
-        CFBundleDisplayName: Readest
+        CFBundleDisplayName: Yiwei
         NSExtension:
           NSExtensionPointIdentifier: com.apple.share-services
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
@@ -177,12 +176,11 @@ targets:
     settings:
       base:
         PRODUCT_NAME: ShareExtension
-        PRODUCT_BUNDLE_IDENTIFIER: com.bilingify.readest.ShareExtension
-        DEVELOPMENT_TEAM: J5W48D69VR
+        PRODUCT_BUNDLE_IDENTIFIER: com.yiwei.reader.ShareExtension
         CODE_SIGN_ENTITLEMENTS: ShareExtension/ShareExtension.entitlements
         # Do NOT set CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION here. This
         # entitlements file declares com.apple.security.application-groups
-        # (group.com.bilingify.readest). With automatic App Store signing,
+        # (group.com.yiwei.reader). With automatic App Store signing,
         # that flag lets `xcodebuild -exportArchive` overwrite the extension
         # entitlements with a minimal auto-derived set that DROPS the app
         # group — silently breaking App Group access in App Store builds
@@ -202,23 +200,22 @@ targets:
   # WidgetKit extension that surfaces the user's current reading progress
   # on the iOS home screen / Today view. Reads from the App Group suite
   # written by the main app's useReadingWidget hook (Task 7).
-  ReadestWidget:
+  YiweiWidget:
     type: app-extension
     platform: iOS
     sources:
-      - path: ReadestWidget
+      - path: YiweiWidget
     info:
-      path: ReadestWidget/Info.plist
+      path: YiweiWidget/Info.plist
       properties:
-        CFBundleDisplayName: Readest
+        CFBundleDisplayName: Yiwei
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     settings:
       base:
-        PRODUCT_NAME: ReadestWidget
-        PRODUCT_BUNDLE_IDENTIFIER: com.bilingify.readest.ReadestWidget
-        DEVELOPMENT_TEAM: J5W48D69VR
-        CODE_SIGN_ENTITLEMENTS: ReadestWidget/ReadestWidget.entitlements
+        PRODUCT_NAME: YiweiWidget
+        PRODUCT_BUNDLE_IDENTIFIER: com.yiwei.reader.YiweiWidget
+        CODE_SIGN_ENTITLEMENTS: YiweiWidget/YiweiWidget.entitlements
         # CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION is intentionally omitted
         # (see ShareExtension): with it, the App Store export re-sign strips
         # com.apple.security.application-groups, so the widget reads an empty

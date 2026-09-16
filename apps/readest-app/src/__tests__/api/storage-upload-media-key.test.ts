@@ -1,10 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { READEST_PUBLIC_ASSETS_BASE_URL } from '@/services/constants';
 
 // Issue #5424: exported annotations and Readwise pushes need a durable, public
 // cover URL. Covers are published to media/book_covers/<user-seg>/<coverHash>.png
-// in the public bucket and served from https://assets.readest.com — the key is
-// content-addressed so re-uploads are idempotent and the URL never rotates.
+// in the public bucket and served from the configured public assets host — the
+// key is content-addressed so re-uploads are idempotent and the URL never
+// rotates.
 
 const validateUserAndTokenMock = vi.fn();
 const getUploadSignedUrlMock = vi.fn();
@@ -72,7 +74,7 @@ describe('POST /api/storage/upload — media book cover key', () => {
     expect(status).toHaveBeenCalledWith(200);
     expect(json).toHaveBeenCalledWith({
       uploadUrl: 'https://r2/upload',
-      downloadUrl: 'https://assets.readest.com/media/book_covers/abcdef12/c0ffee42.png',
+      downloadUrl: `${READEST_PUBLIC_ASSETS_BASE_URL}/media/book_covers/abcdef12/c0ffee42.png`,
     });
   });
 

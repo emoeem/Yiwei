@@ -231,7 +231,7 @@ pub async fn open_web_browser<R: tauri::Runtime>(
     // finished path (wry limitation), so we remember it ourselves.
     let pending: Arc<Mutex<HashMap<String, PathBuf>>> = Arc::new(Mutex::new(HashMap::new()));
 
-    let title = parsed.host_str().unwrap_or("Readest").to_string();
+    let title = parsed.host_str().unwrap_or("Yiwei").to_string();
 
     let nav_app = app.clone();
     let nav_label = label.clone();

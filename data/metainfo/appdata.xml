@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>com.bilingify.readest</id>
+  <id>com.yiwei.reader</id>
 
-  <name>Readest</name>
-  <summary>Modern, feature-rich ebook reader</summary>
+  <name>Yiwei</name>
+  <summary>Local-first, cross-platform ebook reader</summary>
 
   <description>
-    <p>Readest is a modern, feature-rich ebook reader designed for avid readers offering seamless cross-platform access, powerful tools, and an intuitive interface to elevate your reading experience.</p>
-    <p>Built as a modern rewrite of Foliate, Readest leverages Next.js 15 and Tauri v2 to deliver a smooth, cross-platform experience across macOS, Windows, Linux, Android, iOS, and the Web.</p>
-    <p>Whether you're analyzing complex texts, immersing yourself in stories, or exploring new ideas, Readest adapts to your needs with powerful features for deep, thoughtful reading.</p>
+    <p>Yiwei is a local-first ebook reader for deep, focused reading. Your library and reading state live on your device; the cloud is optional.</p>
+    <p>Built on the open-source Readest codebase (AGPL-3.0), it runs across macOS, Windows, Linux, Android, iOS and the Web from one codebase.</p>
+    <p>Whether you're analyzing complex texts, immersing yourself in stories, or exploring new ideas, Yiwei adapts to your needs with powerful features for deep, thoughtful reading.</p>
     <p>Key features include:</p>
     <ul>
       <li>Multi-format support for EPUB, MOBI, KF8 (AZW3), FB2, CBZ, TXT, and PDF (experimental).</li>
@@ -35,7 +35,7 @@
   </categories>
 
   <keywords>
-    <keyword translate="no">readest</keyword>
+    <keyword translate="no">yiwei</keyword>
     <keyword>ebook</keyword>
     <keyword>reader</keyword>
     <keyword>epub</keyword>
@@ -51,13 +51,11 @@
     <keyword>sync</keyword>
   </keywords>
 
-  <url type="homepage">https://github.com/readest/readest</url>
-  <url type="bugtracker">https://github.com/readest/readest/issues</url>
-  <url type="help">https://github.com/readest/readest/wiki</url>
-  <url type="donation">https://github.com/sponsors/readest</url>
-  <url type="vcs-browser">https://github.com/readest/readest</url>
+  <url type="homepage">https://github.com/emoeem/readest</url>
+  <url type="bugtracker">https://github.com/emoeem/readest/issues</url>
+  <url type="vcs-browser">https://github.com/emoeem/readest</url>
 
-  <launchable type="desktop-id">com.bilingify.readest.desktop</launchable>
+  <launchable type="desktop-id">com.yiwei.reader.desktop</launchable>
 
   <requires>
     <display_length compare="ge">360</display_length>
@@ -230,8 +228,8 @@
   <metadata_license>FSFAP</metadata_license>
   <project_license>AGPL-3.0-or-later</project_license>
 
-  <developer id="com.readest">
-    <name>Readest Team</name>
+  <developer id="com.yiwei">
+    <name>Yiwei</name>
   </developer>
 
   <screenshots>

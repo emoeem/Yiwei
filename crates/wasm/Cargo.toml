@@ -1,0 +1,22 @@
+[package]
+license = "AGPL-3.0"
+name = "reader-wasm"
+description = "wasm-bindgen facade exposing reader-document and reader-annotation to the web shell"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+reader-model.workspace = true
+reader-annotation.workspace = true
+reader-document.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+wasm-bindgen = "0.2"
+
+[lints]
+workspace = true

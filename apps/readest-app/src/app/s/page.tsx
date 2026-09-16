@@ -11,7 +11,7 @@ import ShareLanding from './ShareLanding';
 //
 // In the Tauri build (output: 'export'), this whole route is dropped because
 // rewrites and dynamic metadata require a server. Tauri intercepts the
-// readest://share/{token} deep link before /s ever loads.
+// yiwei://share/{token} deep link before /s ever loads.
 
 interface PageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>;

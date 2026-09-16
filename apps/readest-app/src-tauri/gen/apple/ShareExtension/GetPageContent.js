@@ -1,4 +1,4 @@
-// NSExtensionJavaScriptPreprocessingFile for the Readest Share Extension.
+// NSExtensionJavaScriptPreprocessingFile for the Yiwei Share Extension.
 //
 // When the user shares a web *page* from Safari, this runs inside the
 // page itself — with the user's real session — and hands the rendered

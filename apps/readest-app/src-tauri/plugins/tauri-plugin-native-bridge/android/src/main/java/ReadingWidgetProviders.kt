@@ -14,7 +14,7 @@ import org.json.JSONObject
 import java.io.File
 
 private fun bookPendingIntent(context: Context, hash: String, requestCode: Int): PendingIntent {
-    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("readest://book/$hash"))
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("yiwei://book/$hash"))
         .setPackage(context.packageName)
     val flags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
     return PendingIntent.getActivity(context, requestCode, intent, flags)

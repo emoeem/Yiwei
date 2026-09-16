@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const allowedOrigins = [
-  'https://web.readest.com',
+  // Replace with your own web deployment origin before shipping.
+  'https://yiwei.invalid',
   'https://tauri.localhost',
   'http://tauri.localhost',
   'http://localhost:3000',

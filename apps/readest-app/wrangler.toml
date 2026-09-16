@@ -1,4 +1,4 @@
-name = "readest-web"
+name = "yiwei-web"
 # Custom entry: re-exports OpenNext's generated fetch handler and adds the
 # scheduled() handler for the reading-statistics compaction cron (worker.ts).
 main = "./worker.ts"
@@ -13,20 +13,18 @@ preview_urls = true
 [triggers]
 crons = ["*/10 * * * *"]
 
-[[routes]]
-pattern = "web-cf.readest.com"
-zone_name = "readest.com"
-custom_domain = true
-
-[[routes]]
-pattern = "api-cf.readest.com"
-zone_name = "readest.com"
-custom_domain = true
-
-[[routes]]
-pattern = "web.readest.com"
-zone_name = "readest.com"
-custom_domain = true
+# Custom domains are commented out: those hostnames belong to the upstream
+# vendor. Deploy to workers.dev until your own zone exists, then add the routes
+# back with your own domain.
+#
+# [[routes]]
+# pattern = "web-cf.example.com"
+# zone_name = "example.com"
+# custom_domain = true
+#
+# NOTE: the KV namespace id, the R2 bucket names and the Analytics Engine
+# datasets below are upstream's resources. Create your own and replace the ids
+# before deploying, or the worker will fail to bind.
 
 [vars]
 PNPM_VERSION = "10.28.1"
@@ -57,7 +55,7 @@ id = "fa6e3eb1988a424bbf3c952e01650ced"
 
 [[r2_buckets]]
 binding = "NEXT_INC_CACHE_R2_BUCKET"
-bucket_name = "readest-next-inc-cache"
+bucket_name = "yiwei-next-inc-cache"
 
 # Reading-statistics archive: immutable per-user JSON segments of page events
 # older than the hot window (stats/v1/{user_id}/{updated_to_ms}.json), listed in
@@ -65,7 +63,7 @@ bucket_name = "readest-next-inc-cache"
 # stats pull in /api/sync. Absent binding = feature off (self-host).
 [[r2_buckets]]
 binding = "STATS_ARCHIVE_R2"
-bucket_name = "readest-stats-archive"
+bucket_name = "yiwei-stats-archive"
 
 # Per-event metrics for the App Store / Google Play subscription webhooks and the
 # reconciliation sweep. 100% capture, independent of the head-sampled Workers

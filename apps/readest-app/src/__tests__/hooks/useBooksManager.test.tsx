@@ -79,7 +79,7 @@ describe('useBooksManager open-failure handling', () => {
   });
 
   // Cold-restore autoplay: the app relaunches straight into the reader with the
-  // target book ALREADY mounted, and the `readest://book/{hash}?autoplay=tts`
+  // target book ALREADY mounted, and the `yiwei://book/{hash}?autoplay=tts`
   // deep link lands after the mount-time consumption effect has run. The
   // open-book-in-reader dispatch then hits the "existing" branch, which only
   // focuses the book — bookKeys never changes, so without consuming there the

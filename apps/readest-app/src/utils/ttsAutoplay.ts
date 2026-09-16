@@ -1,5 +1,5 @@
 // One-shot hand-off for an Android Auto "Resume last book" tap: the car cold
-// launches the app with `readest://book/{hash}?autoplay=tts`; the deep-link
+// launches the app with `yiwei://book/{hash}?autoplay=tts`; the deep-link
 // handler records the hash here, and the reader consumes it once that book's
 // view has inited to start read-aloud. Module-scoped so it survives the
 // library -> reader navigation (like the deep-link cold-start guards).

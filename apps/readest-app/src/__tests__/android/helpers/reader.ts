@@ -12,7 +12,7 @@ import {
 } from './adb';
 import { CdpPage, forwardWebViewDevtools, listPages } from './cdp';
 
-export const APP_PKG = 'com.bilingify.readest';
+export const APP_PKG = 'com.yiwei.reader';
 const CDP_PORT = Number(process.env['READEST_CDP_PORT'] ?? 9333);
 const REMOTE_FIXTURE_DIR = '/sdcard/Download';
 

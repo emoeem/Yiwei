@@ -51,7 +51,7 @@ describe('pkce', () => {
     const url = new URL(
       buildAuthUrl({
         clientId: 'CID',
-        redirectUri: 'readest-onedrive://auth',
+        redirectUri: 'yiwei-onedrive://auth',
         scope: 'Files.ReadWrite.AppFolder offline_access',
         challenge: 'CH',
         state: 'ST',

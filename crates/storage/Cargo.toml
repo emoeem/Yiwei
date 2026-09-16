@@ -1,0 +1,24 @@
+[package]
+license = "AGPL-3.0"
+name = "reader-storage"
+description = "SQLite schema migrations and repositories for the local database"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+rusqlite.workspace = true
+reader-model.workspace = true
+reader-sync.workspace = true
+
+[dev-dependencies]
+reader-document.workspace = true
+reader-annotation.workspace = true
+
+[lints]
+workspace = true
+

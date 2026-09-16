@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
   <background android:drawable="@color/ic_launcher_background"/>
+  <!-- The 9% inset keeps the mark inside Android's guaranteed-visible circle
+       (66dp of the 108dp canvas). Without it the reed's tip sits at 69% of the
+       half-canvas radius and is clipped by circular/squircle launcher masks.
+       `tauri icon` rewrites this file without the inset, so re-apply it after
+       regenerating icons: content max radius must stay <= ~57%. -->
   <foreground>
     <inset
       android:drawable="@mipmap/ic_launcher_foreground"
-      android:inset="22%"/>
+      android:inset="9%"/>
   </foreground>
   <monochrome>
     <inset
       android:drawable="@mipmap/ic_launcher_monochrome"
-      android:inset="22%"/>
+      android:inset="9%"/>
   </monochrome>
 </adaptive-icon>

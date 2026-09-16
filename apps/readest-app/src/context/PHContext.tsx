@@ -4,6 +4,7 @@ import posthog from 'posthog-js';
 import { ReactNode, useEffect } from 'react';
 import { PostHogProvider } from 'posthog-js/react';
 import { TELEMETRY_DECISION_KEY, TELEMETRY_OPT_OUT_KEY } from '@/utils/telemetry';
+import { decodeEnvBase64 } from '@/utils/envBase64';
 import { getAppVersion } from '@/utils/version';
 
 // Returns true if PostHog should be opted-out at boot time, before settings
@@ -21,10 +22,10 @@ const shouldOptOutAtBoot = () => {
 
 const posthogUrl =
   process.env['NEXT_PUBLIC_POSTHOG_HOST'] ||
-  atob(process.env['NEXT_PUBLIC_DEFAULT_POSTHOG_URL_BASE64']!);
+  decodeEnvBase64(process.env['NEXT_PUBLIC_DEFAULT_POSTHOG_URL_BASE64']);
 const posthogKey =
   process.env['NEXT_PUBLIC_POSTHOG_KEY'] ||
-  atob(process.env['NEXT_PUBLIC_DEFAULT_POSTHOG_KEY_BASE64']!);
+  decodeEnvBase64(process.env['NEXT_PUBLIC_DEFAULT_POSTHOG_KEY_BASE64']);
 
 if (typeof window !== 'undefined' && process.env['NODE_ENV'] === 'production' && posthogKey) {
   posthog.init(posthogKey, {

@@ -9,6 +9,10 @@ members = [
 ]
 exclude = [
   "packages/qcms",
+  # The Reader Platform Rust Core is its own workspace (see crates/Cargo.toml):
+  # edition 2024, own lints, own lockfile. Keeping it out of this workspace keeps
+  # the upstream manifest and lockfiles stable across `rebase upstream/main`.
+  "crates",
   # The tauri fork is its own cargo workspace and its crates use
   # `workspace = true` inheritance. Keep it out of this workspace so those
   # resolve against packages/tauri/Cargo.toml; it still reaches the build

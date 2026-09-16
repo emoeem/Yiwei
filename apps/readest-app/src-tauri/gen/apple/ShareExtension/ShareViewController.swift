@@ -1,7 +1,7 @@
-// Share Extension for Readest: catches an article URL from any iOS share
+// Share Extension for Yiwei: catches an article URL from any iOS share
 // sheet (Safari, Chrome, third-party browsers), shows a small sheet UI
 // that lets the user pick a target library group, then queues the save
-// into the App Group container and best-effort launches Readest.
+// into the App Group container and best-effort launches Yiwei.
 //
 // Safari shares additionally run `GetPageContent.js` inside the page
 // (NSExtensionJavaScriptPreprocessingFile) and deliver the rendered DOM
@@ -14,7 +14,7 @@
 //
 //   1. App Group queue + responder-chain launch.
 //      `AppGroupBridge.appendPendingSave` writes the URL + chosen group
-//      to the shared NSUserDefaults at `group.com.bilingify.readest`.
+//      to the shared NSUserDefaults at `group.com.yiwei.reader`.
 //      We then walk the UIResponder chain looking for an object that
 //      responds to `openURL:options:completionHandler:` (UIApplication)
 //      and dispatch via an objc-runtime IMP cast. This is the pattern
@@ -30,7 +30,7 @@
 //      If the launch trick is ever blocked by Apple, the save still
 //      sits in the queue. The host's `NativeBridgePlugin` drains it on
 //      `applicationDidBecomeActive` so the next time the user opens
-//      Readest manually, the article is ingested.
+//      Yiwei manually, the article is ingested.
 //
 // `extensionContext.open(_:)` is intentionally not used — Apple docs
 // scope it to Today widgets only and it returns success=false from
@@ -54,7 +54,7 @@ final class ShareViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    NSLog("[ReadestShare] viewDidLoad")
+    NSLog("[YiweiShare] viewDidLoad")
     view.backgroundColor = .clear
     Task { await self.loadAndPresent() }
   }
@@ -63,11 +63,11 @@ final class ShareViewController: UIViewController {
 
   private func loadAndPresent() async {
     guard let context = extensionContext else {
-      NSLog("[ReadestShare] no extensionContext")
+      NSLog("[YiweiShare] no extensionContext")
       return
     }
     let items = context.inputItems.compactMap { $0 as? NSExtensionItem }
-    NSLog("[ReadestShare] inputItems count=\(items.count)")
+    NSLog("[YiweiShare] inputItems count=\(items.count)")
 
     // Safari web-page shares deliver the JS-preprocessed DOM; every other
     // source falls through to the plain URL/text extraction.
@@ -87,13 +87,13 @@ final class ShareViewController: UIViewController {
 
     await MainActor.run {
       guard let url = url else {
-        NSLog("[ReadestShare] no URL found, cancelling")
+        NSLog("[YiweiShare] no URL found, cancelling")
         self.cancelRequest()
         return
       }
       self.capturedHtml = pageContent?.html
       NSLog(
-        "[ReadestShare] presenting picker for URL: %@ (captured HTML: %d chars)",
+        "[YiweiShare] presenting picker for URL: %@ (captured HTML: %d chars)",
         url.absoluteString, pageContent?.html?.count ?? 0)
       self.presentPicker(url: url, pageTitle: pageTitle)
     }
@@ -141,12 +141,12 @@ final class ShareViewController: UIViewController {
     )
     AppGroupBridge.appendPendingSave(save)
     NSLog(
-      "[ReadestShare] queued save for %@ group=%@ htmlFile=%@",
+      "[YiweiShare] queued save for %@ group=%@ htmlFile=%@",
       url.absoluteString, group?.name ?? "<none>", htmlFile ?? "<none>")
 
     if let target = buildTargetURL(scheme: "readest", host: "clip", inner: url) {
       let opened = openViaResponderChain(target)
-      NSLog("[ReadestShare] responder-chain launch=%@", opened ? "yes" : "no")
+      NSLog("[YiweiShare] responder-chain launch=%@", opened ? "yes" : "no")
     }
     completeOnce()
   }
@@ -154,7 +154,7 @@ final class ShareViewController: UIViewController {
   private func cancelRequest() {
     guard !didCompleteOnce else { return }
     didCompleteOnce = true
-    let err = NSError(domain: "ReadestShare", code: NSUserCancelledError, userInfo: nil)
+    let err = NSError(domain: "YiweiShare", code: NSUserCancelledError, userInfo: nil)
     extensionContext?.cancelRequest(withError: err)
   }
 
@@ -188,7 +188,7 @@ final class ShareViewController: UIViewController {
         else { continue }
         var html = results["html"] as? String
         if let candidate = html, candidate.isEmpty || candidate.utf8.count > Self.maxSharedHtmlBytes {
-          NSLog("[ReadestShare] dropping captured HTML (%d bytes)", candidate.utf8.count)
+          NSLog("[YiweiShare] dropping captured HTML (%d bytes)", candidate.utf8.count)
           html = nil
         }
         let title = (results["title"] as? String).flatMap { $0.isEmpty ? nil : $0 }
@@ -295,12 +295,12 @@ final class ShareViewController: UIViewController {
         let imp = method_getImplementation(method)
         let fn = unsafeBitCast(imp, to: OpenURLFn.self)
         fn(target, selector, url, nil, nil)
-        NSLog("[ReadestShare] openURL invoked on \(cls) via IMP")
+        NSLog("[YiweiShare] openURL invoked on \(cls) via IMP")
         return true
       }
       responder = r.next
     }
-    NSLog("[ReadestShare] no responder accepted openURL:options:completionHandler:")
+    NSLog("[YiweiShare] no responder accepted openURL:options:completionHandler:")
     return false
   }
 }
@@ -340,7 +340,7 @@ private final class SaveOptionsViewController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = NSLocalizedString("Save to Readest", comment: "Share extension title")
+    title = NSLocalizedString("Save to Yiwei", comment: "Share extension title")
     // Both Cancel and Save are iOS system bar button items — UIKit
     // localizes them automatically for every language Apple ships, so
     // the extension doesn't carry its own .strings file for them.

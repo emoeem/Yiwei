@@ -161,7 +161,7 @@ fn ua_major_version(user_agent: &str, token: &str) -> Option<String> {
 /// no DSN is configured (empty `SENTRY_DSN` => the native SDK stays disabled).
 #[cfg(target_os = "ios")]
 #[no_mangle]
-pub extern "C" fn readest_sentry_dsn() -> *const std::os::raw::c_char {
+pub extern "C" fn yiwei_sentry_dsn() -> *const std::os::raw::c_char {
     use std::ffi::CString;
     use std::sync::OnceLock;
     static DSN: OnceLock<Option<CString>> = OnceLock::new();

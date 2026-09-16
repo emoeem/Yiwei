@@ -1,5 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
+import { READEST_WEB_BASE_URL } from '@/services/constants';
+
+const WEB_HOST = new URL(READEST_WEB_BASE_URL).host;
 
 const invokeMock = vi.fn();
 
@@ -86,7 +89,7 @@ describe('useClipUrlIngress deep-link routing', () => {
   it('does NOT run the article clipper on share deep links', async () => {
     renderHook(() => useClipUrlIngress());
     await eventDispatcher.dispatch('app-incoming-url', {
-      urls: ['https://web.readest.com/s/Qmup0X1A8ovl2FmKJKA8mB'],
+      urls: [`https://${WEB_HOST}/s/Qmup0X1A8ovl2FmKJKA8mB`],
     });
     await Promise.resolve();
     // Share links belong to useOpenShareLink; the clipper must leave them alone.

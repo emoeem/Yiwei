@@ -59,7 +59,7 @@ function createMockFs(overrides: Partial<FileSystem> = {}): FileSystem {
       atime: null,
       birthtime: null,
     }),
-    getPrefix: vi.fn().mockResolvedValue('Readest/Books'),
+    getPrefix: vi.fn().mockResolvedValue('Yiwei/Books'),
     ...overrides,
   } as FileSystem;
 }
@@ -116,7 +116,7 @@ describe('uploadBookCover (issue #4544)', () => {
     expect(fs.openFile).toHaveBeenCalledWith(
       'abc123/cover.png',
       'Books',
-      'Readest/Books/abc123/cover.png',
+      'Yiwei/Books/abc123/cover.png',
     );
     expect(book.uploadedAt).toBe(1000); // unchanged
   });

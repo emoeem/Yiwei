@@ -59,7 +59,7 @@ import { eventDispatcher } from '@/utils/event';
 
 const CFI = 'epubcfi(/6/4!/4/2)';
 const urlFor = (hash: string) =>
-  `readest://book/${hash}/annotation/note1?cfi=${encodeURIComponent(CFI)}`;
+  `yiwei://book/${hash}/annotation/note1?cfi=${encodeURIComponent(CFI)}`;
 
 const collectSwitch = () => {
   const switched = vi.fn();

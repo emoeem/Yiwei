@@ -169,7 +169,7 @@ export class TTSMediaBridge {
         active: true,
         ownsAudioFocus: meta.ownsAudioFocus ?? true,
         // bookKey is `${hash}-${uniqueId()}`; the hash alone addresses the book
-        // for a readest://book/{hash} resume deep link from the car.
+        // for a yiwei://book/{hash} resume deep link from the car.
         bookHash: meta.bookKey.split('-')[0],
         bookTitle: meta.title,
         bookAuthor: meta.author,

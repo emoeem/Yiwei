@@ -130,25 +130,25 @@ describe('WebAppService', () => {
   describe('resolvePath', () => {
     test('resolves Data base dir', () => {
       const resolved = service.resolvePath('test.json', 'Data');
-      expect(resolved.fp).toBe('Readest/test.json');
+      expect(resolved.fp).toBe('Yiwei/test.json');
       expect(resolved.base).toBe('Data');
       expect(resolved.baseDir).toBe(0);
     });
 
     test('resolves Books base dir', () => {
       const resolved = service.resolvePath('mybook.epub', 'Books');
-      expect(resolved.fp).toBe('Readest/Books/mybook.epub');
+      expect(resolved.fp).toBe('Yiwei/Books/mybook.epub');
       expect(resolved.base).toBe('Books');
     });
 
     test('resolves Fonts base dir', () => {
       const resolved = service.resolvePath('myfont.ttf', 'Fonts');
-      expect(resolved.fp).toBe('Readest/Fonts/myfont.ttf');
+      expect(resolved.fp).toBe('Yiwei/Fonts/myfont.ttf');
     });
 
     test('resolves Images base dir', () => {
       const resolved = service.resolvePath('img.png', 'Images');
-      expect(resolved.fp).toBe('Readest/Images/img.png');
+      expect(resolved.fp).toBe('Yiwei/Images/img.png');
     });
 
     test('resolves None base dir as raw path', () => {
@@ -461,12 +461,12 @@ describe('WebAppService', () => {
   describe('fs.getPrefix', () => {
     test('returns correct prefix for Books', async () => {
       const prefix = await service.fs.getPrefix('Books');
-      expect(prefix).toBe('Readest/Books');
+      expect(prefix).toBe('Yiwei/Books');
     });
 
     test('returns correct prefix for Data', async () => {
       const prefix = await service.fs.getPrefix('Data');
-      expect(prefix).toBe('Readest');
+      expect(prefix).toBe('Yiwei');
     });
 
     test('returns correct prefix for empty fp with None', async () => {

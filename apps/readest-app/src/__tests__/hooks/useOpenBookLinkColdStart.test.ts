@@ -3,7 +3,7 @@ import { cleanup, renderHook } from '@testing-library/react';
 
 // #6104: tauri-plugin-deep-link keeps the launch URL in PROCESS-global state for
 // the whole app session — macOS's `RunEvent::Opened` replaces it and nothing ever
-// clears it — so getCurrent() keeps handing back `readest://book/<hash>` long
+// clears it — so getCurrent() keeps handing back `yiwei://book/<hash>` long
 // after that book was opened. Both JS consume-once guards (the module-scoped
 // `coldStartConsumed` flag and the `consumedColdStartBookUrl` sessionStorage key)
 // are per-webview, and `openBookInNewWindow` defaults to true on desktop, so
@@ -87,7 +87,7 @@ const runColdStart = async (label: string, pathname: string) => {
 
 describe('useOpenBookLink — cold-start deep link ownership (#6104)', () => {
   beforeEach(() => {
-    coldStartUrls = ['readest://book/linkedBook'];
+    coldStartUrls = ['yiwei://book/linkedBook'];
     navigateToReaderMock.mockReset();
     routerPushMock.mockReset();
     sessionStorage.clear();
@@ -123,11 +123,11 @@ describe('useOpenBookLink — cold-start deep link ownership (#6104)', () => {
 // whatever URL the plugin last stored. The consume marker has to survive that
 // reload, remember every URL the run acted on (a single last-seen stamp lets a
 // replayed A through once B has been opened), and never touch live deliveries:
-// re-tapping the same `readest://book/<hash>` bookmark is the reporter's whole
+// re-tapping the same `yiwei://book/<hash>` bookmark is the reporter's whole
 // workflow.
 describe('useOpenBookLink — launch URL replayed after a reload (#6104)', () => {
-  const URL_A = 'readest://book/linkedBook';
-  const URL_B = 'readest://book/clickedBook';
+  const URL_A = 'yiwei://book/linkedBook';
+  const URL_B = 'yiwei://book/clickedBook';
 
   // Boot a document on `/library` with getCurrent() reporting `urls`, and
   // return the eventDispatcher so a live delivery can follow.

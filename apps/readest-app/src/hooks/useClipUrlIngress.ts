@@ -69,7 +69,7 @@ async function convertSharedHtml(url: string, htmlFile: string): Promise<Convert
  * woke the app up before this hook had mounted.
  *
  * Filter rules — only act on URLs that are:
- *   - http(s) (not file://, content://, readest://, blob:, data:)
+ *   - http(s) (not file://, content://, yiwei://, blob:, data:)
  *   - NOT an annotation deep link (those go to useOpenAnnotationLink)
  *
  * Failures surface as toasts. Successful clips show "Saving article…"
@@ -166,10 +166,10 @@ export function useClipUrlIngress() {
       //   - Universal Link (primary):
       //       https://web.readest.com/clip?url=<encoded>
       //   - Custom URL scheme (fallback):
-      //       readest://clip?url=<encoded>
+      //       yiwei://clip?url=<encoded>
       const isClipUrl =
-        url.startsWith('readest://clip?') ||
-        url.startsWith('readest://clip/') ||
+        url.startsWith('yiwei://clip?') ||
+        url.startsWith('yiwei://clip/') ||
         /^https:\/\/web\.readest\.com\/clip(?:[/?].*)?$/i.test(url);
       if (isClipUrl) {
         try {

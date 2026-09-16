@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { cleanup, renderHook } from '@testing-library/react';
 
 // Defect B (see the pause-investigation report's "unrelated defects" section):
-// a `readest://book/<abs-hash>` deep link arriving while a regular book's
+// a `yiwei://book/<abs-hash>` deep link arriving while a regular book's
 // reader is already mounted used to be treated like any other book and
 // dispatched into the reader in place ('open-book-in-reader'), which drives
 // useBooksManager's initViewState down the document-loader path a streaming
@@ -50,7 +50,7 @@ vi.mock('@/store/libraryStore', () => {
 import { useOpenBookLink } from '@/hooks/useOpenBookLink';
 import { eventDispatcher } from '@/utils/event';
 
-const urlFor = (hash: string) => `readest://book/${hash}`;
+const urlFor = (hash: string) => `yiwei://book/${hash}`;
 
 const collectSwitch = () => {
   const switched = vi.fn();

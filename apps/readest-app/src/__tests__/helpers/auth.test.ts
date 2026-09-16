@@ -20,7 +20,7 @@ describe('parseOAuthCallbackUrl', () => {
   it('should extract error params from a failed deeplink callback', () => {
     // Real-world failing callback from issue #4881
     const url =
-      'readest://auth-callback?error=server_error&error_code=unexpected_failure&error_description=Unable+to+exchange+external+code%3A+c578' +
+      'yiwei://auth-callback?error=server_error&error_code=unexpected_failure&error_description=Unable+to+exchange+external+code%3A+c578' +
       '#error=server_error&error_code=unexpected_failure&error_description=Unable+to+exchange+external+code%253A+c578&sb=';
 
     const params = parseOAuthCallbackUrl(url);
@@ -34,7 +34,7 @@ describe('parseOAuthCallbackUrl', () => {
 
   it('should extract tokens from a successful implicit-flow callback', () => {
     const url =
-      'readest://auth-callback#access_token=abc123&refresh_token=def456&type=magiclink&next=/user';
+      'yiwei://auth-callback#access_token=abc123&refresh_token=def456&type=magiclink&next=/user';
 
     const params = parseOAuthCallbackUrl(url);
 
@@ -47,7 +47,7 @@ describe('parseOAuthCallbackUrl', () => {
 
   it('should extract error params when present only in the query string', () => {
     const url =
-      'readest://auth-callback?error=access_denied&error_code=denied&error_description=nope';
+      'yiwei://auth-callback?error=access_denied&error_code=denied&error_description=nope';
 
     const params = parseOAuthCallbackUrl(url);
 
@@ -57,7 +57,7 @@ describe('parseOAuthCallbackUrl', () => {
   });
 
   it('should return all-null params for a callback with no data', () => {
-    const params = parseOAuthCallbackUrl('readest://auth-callback');
+    const params = parseOAuthCallbackUrl('yiwei://auth-callback');
 
     expect(params.accessToken).toBeNull();
     expect(params.error).toBeNull();

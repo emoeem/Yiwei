@@ -54,7 +54,7 @@ export function stableIdentifier(content: string): string {
   for (let i = 0; i < content.length; i++) {
     h = ((h << 5) + h + content.charCodeAt(i)) >>> 0;
   }
-  return `readest:${h.toString(16)}`;
+  return `yiwei:${h.toString(16)}`;
 }
 
 export function stripTags(html: string): string {

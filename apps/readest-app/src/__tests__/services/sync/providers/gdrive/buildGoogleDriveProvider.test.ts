@@ -28,13 +28,13 @@ afterEach(() => {
 });
 
 describe('buildGoogleDriveProvider', () => {
-  test('falls back to the baked official client id when the env override is unset', async () => {
+  test('ships no baked client id: without an env override Drive is unavailable', async () => {
     vi.stubEnv('NEXT_PUBLIC_GOOGLE_CLIENT_ID', '');
-    expect(getGoogleClientId()).toMatch(/\.apps\.googleusercontent\.com$/);
-    // With a baked default + keychain, Drive builds even without an env override.
+    // The fork must not fall back to the upstream vendor's OAuth client.
+    expect(getGoogleClientId()).toBeUndefined();
     vi.mocked(isTauriAppPlatform).mockReturnValue(true);
     vi.mocked(isSyncKeychainAvailable).mockResolvedValue({ available: true });
-    expect(await buildGoogleDriveProvider()).not.toBeNull();
+    expect(await buildGoogleDriveProvider()).toBeNull();
   });
 
   test('the env override wins over the baked default', () => {
@@ -65,13 +65,12 @@ describe('buildGoogleDriveProvider', () => {
     expect(provider?.rootPath).toBe('/');
   });
 
-  test('web: falls back to the baked official web client id when the env override is unset', async () => {
+  test('web: ships no baked client id: without an env override Drive is unavailable', async () => {
     vi.stubEnv('NEXT_PUBLIC_GOOGLE_WEB_CLIENT_ID', '');
     vi.mocked(isWebAppPlatform).mockReturnValue(true);
-    expect(getGoogleWebClientId()).toMatch(/\.apps\.googleusercontent\.com$/);
+    expect(getGoogleWebClientId()).toBeUndefined();
     const provider = await buildGoogleDriveProvider();
-    expect(provider).not.toBeNull();
-    expect(provider?.rootPath).toBe('/');
+    expect(provider).toBeNull();
     // The web path never touches the keychain.
     expect(isSyncKeychainAvailable).not.toHaveBeenCalled();
   });

@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 import { parseRedirect } from '@/services/sync/providers/oauth/parseRedirect';
 
 const REDIRECT_URI = 'com.googleusercontent.apps.cid:/oauthredirect';
-const ONEDRIVE_REDIRECT_URI = 'readest-onedrive://auth';
+const ONEDRIVE_REDIRECT_URI = 'yiwei-onedrive://auth';
 
 describe('parseRedirect', () => {
   test('returns the code when target, state and code are all valid', () => {
@@ -11,7 +11,7 @@ describe('parseRedirect', () => {
   });
 
   test('rejects a URL aimed at a different scheme/path (target guard)', () => {
-    const url = 'readest://auth-callback?code=AUTH_CODE&state=STATE';
+    const url = 'yiwei://auth-callback?code=AUTH_CODE&state=STATE';
     expect(() => parseRedirect(url, 'STATE', REDIRECT_URI)).toThrow(/target mismatch/i);
   });
 
@@ -26,7 +26,7 @@ describe('parseRedirect', () => {
   });
 
   test('rejects a right-scheme but wrong-host redirect', () => {
-    const url = 'readest-onedrive://attacker/?code=SECRET_CODE&state=SECRET_STATE';
+    const url = 'yiwei-onedrive://attacker/?code=SECRET_CODE&state=SECRET_STATE';
     let thrown: unknown;
     try {
       parseRedirect(url, 'STATE', ONEDRIVE_REDIRECT_URI);

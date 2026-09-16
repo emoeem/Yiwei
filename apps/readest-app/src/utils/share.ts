@@ -17,7 +17,7 @@ const isValidToken = (raw: unknown): raw is string => typeof raw === 'string' &&
 export const buildShareUrl = (token: string): string => `${SHARE_BASE_URL}/${token}`;
 
 // Parses both the custom-scheme and HTTPS forms used by the deeplink ingress.
-//   readest://share/{token}
+//   yiwei://share/{token}
 //   https://web.readest.com/s/{token}
 // Returns null on invalid input so callers can fall through to other parsers.
 export const parseShareDeepLink = (url: string): ShareDeepLink | null => {
@@ -28,15 +28,15 @@ export const parseShareDeepLink = (url: string): ShareDeepLink | null => {
   } catch {
     return null;
   }
-  if (parsed.protocol === 'readest:') {
-    // For readest://share/{token} the host portion holds the path segment
+  if (parsed.protocol === 'yiwei:') {
+    // For yiwei://share/{token} the host portion holds the path segment
     // before the slash. Use pathname for the token; url.host == 'share'.
     if (parsed.host !== 'share') return null;
     const token = parsed.pathname.replace(/^\/+/, '').replace(/\/+$/, '');
     return isValidToken(token) ? { token } : null;
   }
   if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
-    if (!isWebReadestHost(parsed.host)) return null;
+    if (!isWebShareHost(parsed.host)) return null;
     const segments = parsed.pathname.split('/').filter(Boolean);
     if (segments.length !== 2 || segments[0] !== 's') return null;
     const token = segments[1]!;
@@ -111,10 +111,13 @@ export const shareSelectedText = async (
   await writeTextToClipboard(text);
 };
 
-const isWebReadestHost = (host: string): boolean => {
-  // Matches the production host and any preview domain Readest may serve from.
-  // Conservative: accepts only the exact production host or a *.readest.com
-  // subdomain so a third-party site cannot impersonate a share URL.
-  if (host === new URL(READEST_WEB_BASE_URL).host) return true;
-  return host.endsWith('.readest.com');
+const isWebShareHost = (host: string): boolean => {
+  // Matches the configured web host and subdomains of the same registrable
+  // domain, so staging/preview deploys keep working after the base URL is
+  // pointed at your own deployment. Conservative on purpose: a third-party
+  // site must not be able to impersonate a share URL.
+  const baseHost = new URL(READEST_WEB_BASE_URL).host;
+  if (host === baseHost) return true;
+  const suffix = baseHost.slice(baseHost.indexOf('.'));
+  return suffix.length > 1 && host.endsWith(suffix);
 };

@@ -41,7 +41,7 @@ import { DEFAULT_ANNOTATION_TOOLBAR_ITEMS } from '@/utils/annotationToolbar';
 import { DEFAULT_SENTENCE_GAP_SEC } from './tts/EdgeTTSClient';
 import { DEFAULT_PARAGRAPH_GAP_SEC } from './tts/TTSController';
 
-export const DATA_SUBDIR = 'Readest';
+export const DATA_SUBDIR = 'Yiwei';
 export const LOCAL_BOOKS_SUBDIR = `${DATA_SUBDIR}/Books`;
 export const CLOUD_BOOKS_SUBDIR = `${DATA_SUBDIR}/Books`;
 export const CLOUD_REPLICAS_SUBDIR = `${DATA_SUBDIR}/Replicas`;
@@ -905,19 +905,27 @@ export const CJK_FONTS_PATTENS = new RegExp(
 
 export const BOOK_IDS_SEPARATOR = '+';
 
-export const DOWNLOAD_READEST_URL = 'https://readest.com?utm_source=readest_web';
+// RFC 2606 reserves `.invalid`, so an unconfigured build cannot reach the
+// upstream vendor's servers. Point these at your own deployment (or set
+// `NEXT_PUBLIC_API_BASE_URL` / `API_BASE_URL` at build time) to enable the
+// cloud-backed features: sync, share, OPDS proxy, metadata search, Edge TTS.
+export const DOWNLOAD_READEST_URL = 'https://yiwei.invalid';
 
-export const READEST_WEB_BASE_URL = 'https://web.readest.com';
-export const READEST_NODE_BASE_URL = 'https://node.readest.com';
+export const READEST_WEB_BASE_URL = 'https://cloud.invalid';
+export const READEST_NODE_BASE_URL = 'https://node.invalid';
 
 export const SHARE_BASE_URL = `${READEST_WEB_BASE_URL}/s`;
 export const SHARE_EXPIRATION_DAYS = [1, 3, 7] as const;
 
-// Send to Readest — the domain inbound capture emails are addressed to, the
+// Send-to-library — the domain inbound capture emails are addressed to, the
 // R2 bucket holding raw inbound payloads, and the per-user cap on undrained
 // inbox items (defense against a leaked address).
-export const SEND_EMAIL_DOMAIN = 'readest.com';
-export const SEND_INBOX_BUCKET = 'readest-send-inbox';
+//
+// `.invalid` is reserved (RFC 2606) and never resolves: the upstream vendor's
+// inbound mail service must not receive our users' clipped pages. Point this at
+// your own domain (and deploy workers/send-email) to enable the feature.
+export const SEND_EMAIL_DOMAIN = 'yiwei.invalid';
+export const SEND_INBOX_BUCKET = 'yiwei-send-inbox';
 export const SEND_INBOX_PENDING_LIMIT = 50;
 // Hard cap on the size of a single uploaded EPUB the browser extension can
 // drop into the inbox. 30 MB is the same total-asset cap the client-side
@@ -931,24 +939,27 @@ export const SHARE_TOKEN_LENGTH = 22;
 export const SHARE_PRESIGN_TTL_SECONDS = 300;
 export const SHARE_CFI_MAX_LENGTH = 512;
 
-const LATEST_DOWNLOAD_BASE_URL = 'https://download.readest.com/releases';
+// Update/changelog feeds. These must be your own release host: the upstream
+// feeds serve upstream's builds, which would silently downgrade a fork back to
+// the original product. `updates.invalid` is intentionally unresolvable.
+const LATEST_DOWNLOAD_BASE_URL = 'https://updates.invalid/releases';
 
 export const READEST_UPDATER_FILE = `${LATEST_DOWNLOAD_BASE_URL}/latest.json`;
 
 export const READEST_CHANGELOG_FILE = `${LATEST_DOWNLOAD_BASE_URL}/release-notes.json`;
 
-export const READEST_NIGHTLY_UPDATER_FILE = 'https://download.readest.com/nightly/latest.json';
+export const READEST_NIGHTLY_UPDATER_FILE = 'https://updates.invalid/nightly/latest.json';
 
 // Public (verification) key, identical to src-tauri/tauri.conf.json `updater.pubkey`.
 // Used to verify nightly artifacts in the custom install flows (portable /
 // AppImage / Android). Safe to embed — it is a public key.
 export const READEST_UPDATER_PUBKEY =
-  'dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEJFMEQ1QjE2OEU1NEIzNTEKUldSUnMxU09GbHNOdmpEaWFMT1crRFpEV2VORzQ2MklxaFc0M1R0ci9xY2c1bENXS0xhM1R1L2sK';
+  'dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDE3OUE3N0U4QzdEMTU5OApSV1NZRlgyTWZxZDVBU3VTRGcxa0FiSU5ROFFMZVVLUFFSOWdJUUxNTHFzVEV3U2ZETDFKdi9ZSQo=';
 
-export const READEST_PUBLIC_STORAGE_BASE_URL = 'https://storage.readest.com';
-// Custom domain serving the readest-public bucket; durable media assets
+export const READEST_PUBLIC_STORAGE_BASE_URL = 'https://storage.invalid';
+// Custom domain serving your public assets bucket; durable media assets
 // (e.g. published book covers) are linked through this host.
-export const READEST_PUBLIC_ASSETS_BASE_URL = 'https://assets.readest.com';
+export const READEST_PUBLIC_ASSETS_BASE_URL = 'https://assets.invalid';
 
 export const READEST_OPDS_USER_AGENT = 'Readest/1.0 (OPDS Browser)';
 

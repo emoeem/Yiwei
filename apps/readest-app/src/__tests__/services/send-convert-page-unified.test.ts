@@ -194,7 +194,7 @@ describe('convertPageToEpub — re-clip identity', () => {
 
     const [ma, mb] = [await opfMetadata(dropped.file), await opfMetadata(embedded.file)];
     expect(ma).toEqual(mb);
-    expect(ma.identifier).toMatch(/^readest:/);
+    expect(ma.identifier).toMatch(/^yiwei:/);
     expect(getMetadataHash(ma)).toBe(getMetadataHash(mb));
   });
 });

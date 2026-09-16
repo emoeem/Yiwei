@@ -98,7 +98,7 @@ fn has_disallowed_components(file_path: &str) -> bool {
             .any(|c| matches!(c, std::path::Component::ParentDir))
 }
 
-/// The app's own storage always carries either the `Readest` data folder or the
+/// The app's own storage always carries either the `Yiwei` data folder or the
 /// app's bundle identifier in its path — the Android sandbox
 /// (`/data/user/0/<identifier>/…`, including the cache dir) and the desktop
 /// identifier dirs (`…/<identifier>/…`). Those paths aren't in the global
@@ -107,7 +107,7 @@ fn has_disallowed_components(file_path: &str) -> bool {
 /// the way `dir_scanner::read_dir` does. `..` is already rejected, so foreign
 /// targets (e.g. `~/.ssh/id_rsa`) stay blocked.
 fn is_within_app_storage(file_path: &str, app_identifier: &str) -> bool {
-    file_path.contains("Readest") || file_path.contains(app_identifier)
+    file_path.contains("Yiwei") || file_path.contains(app_identifier)
 }
 
 /// Validate a webview-supplied `file_path` before any `File::create`/`File::open`.
@@ -391,20 +391,20 @@ mod tests {
 
     #[test]
     fn app_storage_fallback_accepts_app_paths() {
-        let id = "com.bilingify.readest";
+        let id = "com.yiwei.reader";
         // Covers, dictionaries, books, gloss packs — under the `Readest` data dir.
         assert!(is_within_app_storage(
-            "/data/user/0/com.bilingify.readest/Readest/Books/abc/cover.png",
+            "/data/user/0/com.yiwei.reader/Yiwei/Books/abc/cover.png",
             id
         ));
         assert!(is_within_app_storage(
-            "/data/user/0/com.bilingify.readest/Readest/Dictionaries/x/d.mdx",
+            "/data/user/0/com.yiwei.reader/Yiwei/Dictionaries/x/d.mdx",
             id
         ));
         // Cache-dir downloads (e.g. OPDS) carry no `Readest` segment but are still
         // inside the app sandbox, matched via the bundle identifier.
         assert!(is_within_app_storage(
-            "/data/user/0/com.bilingify.readest/cache/opds-book.epub",
+            "/data/user/0/com.yiwei.reader/cache/opds-book.epub",
             id
         ));
         // Foreign targets carry neither segment and stay blocked.
@@ -420,7 +420,7 @@ mod tests {
         // `..` traversal, whether the path is relative or absolute.
         assert!(has_disallowed_components("foo/../bar"));
         assert!(has_disallowed_components(
-            "/home/user/Readest/../../.ssh/id_rsa"
+            "/home/user/Yiwei/../../.ssh/id_rsa"
         ));
     }
 
@@ -430,14 +430,14 @@ mod tests {
         assert!(!has_disallowed_components(
             "/Users/x/Library/Caches/app/book.epub"
         ));
-        assert!(!has_disallowed_components("/Users/x/Readest/Books/h.epub"));
+        assert!(!has_disallowed_components("/Users/x/Yiwei/Books/h.epub"));
     }
 
     #[cfg(windows)]
     #[test]
     fn accepts_plain_absolute_paths_windows() {
         assert!(!has_disallowed_components(
-            "C:\\Users\\x\\AppData\\Roaming\\Readest\\Books\\h.epub"
+            "C:\\Users\\x\\AppData\\Roaming\\Yiwei\\Books\\h.epub"
         ));
     }
 }

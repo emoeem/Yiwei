@@ -119,7 +119,8 @@ pub async fn update_book_presence(
 
     activity_builder = activity_builder.assets(assets_builder);
 
-    let button = activity::Button::new("Read on Readest", "https://web.readest.com");
+    // TODO: point this at the project's own web reader once a domain exists.
+    let button = activity::Button::new("Read on Yiwei", "https://yiwei.invalid");
     activity_builder = activity_builder.buttons(vec![button]);
 
     if let Some(ref mut discord_client) = client.client {

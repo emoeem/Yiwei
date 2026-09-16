@@ -10,6 +10,16 @@ rust-version = "1.90"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+# The dev binary name is what the compositor uses as the Wayland `app_id` (and
+# the X11 `WM_CLASS`), and that id is how a taskbar resolves the window icon —
+# by looking up an icon with the same name in the icon theme. An explicit bin
+# name keeps it aligned with `mainBinaryName` in tauri.conf.json, so the dev
+# build behaves like the bundled one instead of advertising the upstream
+# project name.
+[[bin]]
+name = "yiwei"
+path = "src/main.rs"
+
 [lib]
 name = "readestlib"
 crate-type = ["staticlib", "cdylib", "lib"]

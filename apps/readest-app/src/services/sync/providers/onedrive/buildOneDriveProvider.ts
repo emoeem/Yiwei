@@ -18,14 +18,15 @@ import { createOneDriveTokenPersistence } from './onedriveTokenStore';
 import { webOneDriveTokenPersistence } from './webAuthCodeFlow';
 
 /**
- * Official Readest Microsoft (Azure) app registration client id, baked into the
- * build so OneDrive sync works out of the box. One public client serves every
- * platform (native custom-scheme redirect + web SPA redirect). Not a secret — it
- * ships inside the app binary, like the Google client id. A forker overrides it
- * via `NEXT_PUBLIC_MICROSOFT_CLIENT_ID` at build (and must register their own
- * redirect URIs on that client).
+ * Deliberately empty in this fork. Upstream shipped its own Azure app
+ * registration so OneDrive sync worked out of the box; reusing it would send
+ * users through the upstream vendor's consent screen and redirect URIs. Set
+ * `NEXT_PUBLIC_MICROSOFT_CLIENT_ID` at build time (and register the
+ * `yiwei-onedrive://auth` redirect URI on your own registration) to enable it.
+ *
+ * Empty means the OneDrive provider is unavailable and the UI hides it.
  */
-const OFFICIAL_MICROSOFT_CLIENT_ID = '99ebebbc-a44b-40fc-b418-aade0f28900c';
+const OFFICIAL_MICROSOFT_CLIENT_ID = '';
 
 export const getMicrosoftClientId = (): string | undefined =>
   process.env['NEXT_PUBLIC_MICROSOFT_CLIENT_ID'] || OFFICIAL_MICROSOFT_CLIENT_ID || undefined;

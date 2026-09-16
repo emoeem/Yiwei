@@ -82,7 +82,7 @@ const ShareLanding = () => {
     };
   }, [token, _]);
 
-  const appHref = `readest://share/${encodeURIComponent(token)}`;
+  const appHref = `yiwei://share/${encodeURIComponent(token)}`;
 
   const handleAddToLibrary = async () => {
     if (!token || importing || !appService) return;
@@ -235,7 +235,7 @@ const ShareLanding = () => {
             {/* Direct file download is intentionally disabled on the landing
                 page for now (rights / abuse risk). Recipients open the share
                 inside the app — logged-in via "Add to my library", anonymous
-                via the readest:// deep link with a "Get Readest" footnote
+                via the yiwei:// deep link with a "Get Readest" footnote
                 fallback. The /api/share/[token]/download route still exists
                 so we can re-enable the button without a server change. */}
             <div className='mt-4 flex w-full flex-col gap-2 sm:mt-5'>

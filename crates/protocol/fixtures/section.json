@@ -1,0 +1,17 @@
+{
+  "blocks": [
+    {
+      "block_id": "block-5f3a1c9d2b4e6f8a0c1d2e3f4a5b6c7d",
+      "ordinal": 0,
+      "text": "The brave sailor set sail."
+    },
+    {
+      "block_id": "block-0a1b2c3d4e5f60718293a4b5c6d7e8f9",
+      "ordinal": 1,
+      "text": "The storm arrived at dawn."
+    }
+  ],
+  "doc_fingerprint": "sha256-14c1f0f2b6a8d4e7",
+  "section_id": "OEBPS/text/chapter1.xhtml",
+  "spine_index": 1
+}

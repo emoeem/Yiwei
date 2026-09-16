@@ -5,21 +5,21 @@
     <key>ITSAppUsesNonExemptEncryption</key>
     <false/>
     <key>NSLocalNetworkUsageDescription</key>
-    <string>Readest uses the local network to discover nearby devices and transfer books with Nearby BookDrop.</string>
+    <string>Yiwei uses the local network to discover nearby devices and transfer books with Nearby BookDrop.</string>
     <key>NSUbiquitousContainers</key>
     <dict>
-      <key>iCloud.com.bilingify.readest</key>
+      <key>iCloud.com.yiwei.reader</key>
       <dict>
         <key>NSUbiquitousContainerIsDocumentScopePublic</key>
         <true/>
         <key>NSUbiquitousContainerName</key>
-        <string>Readest</string>
+        <string>Yiwei</string>
         <key>NSUbiquitousContainerSupportedFolderLevels</key>
         <string>Any</string>
       </dict>
     </dict>
     <key>NSFaceIDUsageDescription</key>
-    <string>Readest uses Face ID to unlock the app.</string>
+    <string>Yiwei uses Face ID to unlock the app.</string>
     <key>LSSupportsOpeningDocumentsInPlace</key>
     <false/>
     <key>UIViewControllerBasedStatusBarAppearance</key>
@@ -65,7 +65,7 @@
         <string>Viewer</string>
         <key>LSItemContentTypes</key>
         <array>
-          <string>com.readest.fb2</string>
+          <string>com.yiwei.fb2</string>
         </array>
       </dict>
 
@@ -78,7 +78,7 @@
         <string>Viewer</string>
         <key>LSItemContentTypes</key>
         <array>
-          <string>com.readest.cbz</string>
+          <string>com.yiwei.cbz</string>
         </array>
       </dict>
 
@@ -169,7 +169,7 @@
 
       <dict>
         <key>UTTypeIdentifier</key>
-        <string>com.readest.fb2</string>
+        <string>com.yiwei.fb2</string>
         <key>UTTypeDescription</key>
         <string>FB2 Document</string>
         <key>UTTypeConformsTo</key>
@@ -189,7 +189,7 @@
 
       <dict>
         <key>UTTypeIdentifier</key>
-        <string>com.readest.cbz</string>
+        <string>com.yiwei.cbz</string>
         <key>UTTypeDescription</key>
         <string>CBZ Archive</string>
         <key>UTTypeConformsTo</key>
@@ -295,7 +295,7 @@
 
       <dict>
         <key>UTTypeIdentifier</key>
-        <string>com.readest.fb2</string>
+        <string>com.yiwei.fb2</string>
         <key>UTTypeDescription</key>
         <string>FB2 Document</string>
         <key>UTTypeConformsTo</key>
@@ -315,7 +315,7 @@
 
       <dict>
         <key>UTTypeIdentifier</key>
-        <string>com.readest.cbz</string>
+        <string>com.yiwei.cbz</string>
         <key>UTTypeDescription</key>
         <string>CBZ Archive</string>
         <key>UTTypeConformsTo</key>

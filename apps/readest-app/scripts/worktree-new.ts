@@ -230,7 +230,7 @@ if (fs.existsSync(androidGenDir)) {
   console.error('\n--- Initializing Tauri Android ---');
   fs.rmSync(androidGenDir, { recursive: true });
   execSync('pnpm tauri android init', { stdio: gitStdio, cwd: dstAppDir });
-  execSync('pnpm tauri icon ../../data/icons/readest-book.png', {
+  execSync('pnpm tauri icon ../../data/icons/yiwei/manifest.json', {
     stdio: gitStdio,
     cwd: dstAppDir,
   });

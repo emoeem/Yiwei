@@ -1,6 +1,6 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <color android:color="#FF323130" />
+        <color android:color="#FFF6F3EB" />
     </item>
     <item android:gravity="center" android:width="120dp" android:height="120dp">
         <bitmap android:src="@drawable/splash_icon" />

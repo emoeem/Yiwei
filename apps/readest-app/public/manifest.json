@@ -1,10 +1,10 @@
 {
-  "name": "Readest",
-  "short_name": "Readest",
+  "name": "Yiwei",
+  "short_name": "Yiwei",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "description": "Readest is an open-source eBook reader supporting EPUB, PDF, and sync across devices.",
+  "description": "Yiwei is a local-first, cross-platform eBook reader supporting EPUB, PDF and web novel sources.",
   "icons": [
     {
       "src": "/icon.png",

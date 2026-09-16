@@ -571,7 +571,7 @@ pub fn run() {
                 app.emit("single-instance", SingleInstancePayload { args: argv, cwd })
                     .unwrap();
             })
-            .dbus_id("com.bilingify.readest".to_owned())
+            .dbus_id("com.yiwei.reader".to_owned())
             .build(),
     );
 
@@ -802,7 +802,7 @@ pub fn run() {
             let win_builder = win_builder
                 .decorations(true)
                 .title_bar_style(TitleBarStyle::Overlay)
-                .title("Readest");
+                .title("Yiwei");
 
             #[cfg(all(not(target_os = "macos"), desktop))]
             let win_builder = {
@@ -810,7 +810,7 @@ pub fn run() {
                     .decorations(false)
                     .visible(false)
                     .shadow(true)
-                    .title("Readest");
+                    .title("Yiwei");
 
                 #[cfg(target_os = "windows")]
                 {
@@ -831,6 +831,18 @@ pub fn run() {
                 }
 
                 builder
+            };
+
+            // Compositors resolve a window's icon from the window itself and fall
+            // back to a themed icon keyed by the app id — which in dev builds is
+            // the binary name (`Readest`), so the taskbar/dock would show the
+            // wrong icon (or a generic one). Apply the icon embedded from
+            // `bundle.icon` explicitly instead of relying on that lookup.
+            let win_builder = match app.default_window_icon() {
+                Some(icon) => win_builder
+                    .icon(icon.clone())
+                    .expect("the bundled window icon is valid"),
+                None => win_builder,
             };
 
             #[cfg(not(target_os = "macos"))]

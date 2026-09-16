@@ -4,7 +4,7 @@ import Tauri
 import UIKit
 import os
 
-private let keepAliveLog = Logger(subsystem: "com.bilingify.readest", category: "TTSKeepAlive")
+private let keepAliveLog = Logger(subsystem: "com.yiwei.reader", category: "TTSKeepAlive")
 
 // MARK: - Command arguments (camelCase, decoded from the Rust models)
 
@@ -489,9 +489,9 @@ class NativeTTSPlugin: Plugin, AVSpeechSynthesizerDelegate {
       let args = try invoke.parseArgs(UpdateCarPlayStateArgs.self)
       let active = args.active ?? false
       let defaults = UserDefaults.standard
-      defaults.set(active, forKey: "readest.carplay.active")
-      defaults.set(args.title ?? "", forKey: "readest.carplay.title")
-      defaults.set(args.author ?? "", forKey: "readest.carplay.author")
+      defaults.set(active, forKey: "yiwei.carplay.active")
+      defaults.set(args.title ?? "", forKey: "yiwei.carplay.title")
+      defaults.set(args.author ?? "", forKey: "yiwei.carplay.author")
       DispatchQueue.main.async {
         NotificationCenter.default.post(
           name: Notification.Name("readestCarPlayStateChanged"), object: nil)
@@ -983,7 +983,7 @@ class NativeTTSPlugin: Plugin, AVSpeechSynthesizerDelegate {
   // Decoding + scanning runs off the main thread (a few ms per sentence, but
   // it would land mid-playback). Serial, so queue order still follows enqueue
   // order even if the caller ever stops awaiting each chunk in turn.
-  private let playoutAnalysisQueue = DispatchQueue(label: "com.bilingify.readest.tts.playout")
+  private let playoutAnalysisQueue = DispatchQueue(label: "com.yiwei.reader.tts.playout")
 
   private var playoutSession = 0
   private var playoutQueue: [PlayoutItem] = []

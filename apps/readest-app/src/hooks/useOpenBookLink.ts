@@ -27,7 +27,7 @@ let coldStartConsumed = false;
 const noop = () => {};
 
 /**
- * Receive `readest://book/{hash}` deep links (home-screen widget taps) and open
+ * Receive `yiwei://book/{hash}` deep links (home-screen widget taps) and open
  * the book in the reader. Subscribes to the shared 'app-incoming-url' event for
  * live taps and reads getCurrent() once for cold start, deferring until the
  * library has hydrated.

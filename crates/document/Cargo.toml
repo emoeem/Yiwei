@@ -1,0 +1,23 @@
+[package]
+license = "AGPL-3.0"
+name = "reader-document"
+description = "ZIP/EPUB parsing, derived text index and TXT chunked indexing"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+sha2.workspace = true
+quick-xml.workspace = true
+flate2.workspace = true
+encoding_rs.workspace = true
+reader-model.workspace = true
+reader-annotation.workspace = true
+
+[lints]
+workspace = true
+

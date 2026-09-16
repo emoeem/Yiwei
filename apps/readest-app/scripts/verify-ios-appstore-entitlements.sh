@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Verify the App Store IPA's app extensions carry the App Group entitlement.
 #
-# group.com.bilingify.readest is how the main app hands the reading-widget
+# group.com.yiwei.reader is how the main app hands the reading-widget
 # snapshot (and the share extension its shared state) to its extensions via the
 # shared App Group container. Automatic App Store signing re-signs embedded
 # extensions during `xcodebuild -exportArchive`; if a target sets
@@ -13,9 +13,9 @@
 # broken again.
 set -euo pipefail
 
-IPA="${1:-src-tauri/gen/apple/build/arm64/Readest.ipa}"
-GROUP="group.com.bilingify.readest"
-EXTS=(ReadestWidget ShareExtension)
+IPA="${1:-src-tauri/gen/apple/build/arm64/Yiwei.ipa}"
+GROUP="group.com.yiwei.reader"
+EXTS=(YiweiWidget ShareExtension)
 
 if [ ! -f "$IPA" ]; then
   echo "verify-ios-appstore-entitlements: IPA not found at $IPA" >&2
@@ -25,7 +25,7 @@ fi
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
 unzip -q "$IPA" -d "$WORK"
-APP="$WORK/Payload/Readest.app"
+APP="$WORK/Payload/Yiwei.app"
 
 fail=0
 for ext in "${EXTS[@]}"; do

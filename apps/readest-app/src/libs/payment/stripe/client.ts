@@ -4,6 +4,7 @@ import { loadStripe, Stripe as StripeClient } from '@stripe/stripe-js';
 import { getAPIBaseUrl, isTauriAppPlatform, isWebAppPlatform } from '@/services/environment';
 import { openUrl } from '@tauri-apps/plugin-opener';
 import { getAccessToken } from '@/utils/access';
+import { decodeEnvBase64 } from '@/utils/envBase64';
 import { StripeProductMetadata } from '@/types/payment';
 import { AvailablePlan, PlanType } from '@/types/quota';
 
@@ -11,11 +12,14 @@ let stripePromise: Promise<StripeClient | null>;
 
 export const getStripe = () => {
   if (!stripePromise) {
-    const publishableKey =
+    const publishableKey = decodeEnvBase64(
       process.env.NODE_ENV === 'production'
         ? process.env['NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_BASE64']
-        : process.env['NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_DEV_BASE64'];
-    stripePromise = loadStripe(atob(publishableKey!));
+        : process.env['NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_DEV_BASE64'],
+    );
+    // No key means this build has no payment flow. Callers already tolerate a
+    // null client; checkout is only reachable through the upstream cloud.
+    stripePromise = publishableKey ? loadStripe(publishableKey) : Promise.resolve(null);
   }
   return stripePromise;
 };

@@ -1,0 +1,60 @@
+{
+  "current": {
+    "block_id": "block-5f3a1c9d2b4e6f8a0c1d2e3f4a5b6c7d",
+    "book_id": "01932b39-0000-7000-8000-0000000000aa",
+    "cfi": "epubcfi(/6/4[chap01ref]!/4[body01]/10[para05]/1:58)",
+    "doc_fingerprint": "sha256-14c1f0f2b6a8d4e7",
+    "edition_id": "01932b39-0000-7000-8000-0000000000bb",
+    "end_offset": 72,
+    "future_field": {
+      "nested": [1, 2, 3]
+    },
+    "progression": 0.6405,
+    "rects": [
+      {
+        "height": 0.05,
+        "width": 0.3,
+        "x": 0.1,
+        "y": 0.2
+      }
+    ],
+    "section_id": "OEBPS/text/chapter1.xhtml",
+    "start_offset": 58,
+    "text_quote": {
+      "exact": "brave sailor",
+      "prefix": "the ",
+      "suffix": " set sail"
+    },
+    "updated_at": "2026-09-15T10:00:00Z"
+  },
+  "current_hlc": "0000019a3f66e7e0-00000001-01932b39-0000-7000-8000-0000000000a1",
+  "furthest": {
+    "block_id": "block-5f3a1c9d2b4e6f8a0c1d2e3f4a5b6c7d",
+    "book_id": "01932b39-0000-7000-8000-0000000000aa",
+    "cfi": "epubcfi(/6/4[chap01ref]!/4[body01]/10[para05]/1:58)",
+    "doc_fingerprint": "sha256-14c1f0f2b6a8d4e7",
+    "edition_id": "01932b39-0000-7000-8000-0000000000bb",
+    "end_offset": 72,
+    "future_field": {
+      "nested": [1, 2, 3]
+    },
+    "progression": 0.6405,
+    "rects": [
+      {
+        "height": 0.05,
+        "width": 0.3,
+        "x": 0.1,
+        "y": 0.2
+      }
+    ],
+    "section_id": "OEBPS/text/chapter1.xhtml",
+    "start_offset": 58,
+    "text_quote": {
+      "exact": "brave sailor",
+      "prefix": "the ",
+      "suffix": " set sail"
+    },
+    "updated_at": "2026-09-15T10:00:00Z"
+  },
+  "furthest_hlc": "0000019a3f686e80-00000000-01932b39-0000-7000-8000-0000000000a2"
+}

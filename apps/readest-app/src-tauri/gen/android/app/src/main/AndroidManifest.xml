@@ -23,7 +23,7 @@
         android:largeHeap="true"
         android:enableOnBackInvokedCallback="false"
         android:label="@string/app_name"
-        android:theme="@style/Theme.readest"
+        android:theme="@style/Theme.yiwei"
         android:hardwareAccelerated="true"
         android:usesCleartextTraffic="${usesCleartextTraffic}">
 
@@ -128,18 +128,13 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="readest" android:host="auth-callback" />
+                <data android:scheme="yiwei" android:host="auth-callback" />
             </intent-filter>
 
-            <!-- Google Drive OAuth reverse-DNS redirect (iOS-type client). Mirrors
-                 the deep-link.mobile scheme in tauri.conf.json so the redirect
-                 routes back even if the auto-generated section is regenerated. -->
-            <intent-filter android:label="gdrive-oauth">
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="com.googleusercontent.apps.209390247301-ctpmep68ppfa56r1b8tr35e4qi4p60kq" />
-            </intent-filter>
+            <!-- Google Drive OAuth reverse-DNS redirect intentionally absent:
+                 the scheme upstream registered belongs to Readest's Google OAuth
+                 client (209390247301). Add your own filter here (and mirror it in
+                 tauri.conf.json + Info-ios.plist) to enable Drive import. -->
 
             <!-- OneDrive OAuth redirect. Mirrors the deep-link.mobile scheme in
                  tauri.conf.json so the redirect routes back even if the
@@ -148,7 +143,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="readest-onedrive" android:host="auth" />
+                <data android:scheme="yiwei-onedrive" android:host="auth" />
             </intent-filter>
 
             <intent-filter>
@@ -165,7 +160,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" />
-                <data android:host="web.readest.com" />
+                <data android:host="yiwei.invalid" />
                 
                 
                 
@@ -177,20 +172,7 @@
                 <action android:name="org.chromium.arc.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="readest" />
-                
-                
-                
-                
-                
-            </intent-filter>
-            <intent-filter >
-                <action android:name="android.intent.action.VIEW" />
-                <!-- ChromeOS ARC++ uses a different action for deep links -->
-                <action android:name="org.chromium.arc.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="readest-onedrive" />
+                <data android:scheme="yiwei" />
                 
                 
                 
@@ -203,7 +185,7 @@
                 <action android:name="org.chromium.arc.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="com.googleusercontent.apps.209390247301-ctpmep68ppfa56r1b8tr35e4qi4p60kq" />
+                <data android:scheme="yiwei-onedrive" />
                 
                 
                 

@@ -1,4 +1,4 @@
-// Shared App Group container schema between the Readest Share Extension and
+// Shared App Group container schema between the Yiwei Share Extension and
 // the host app. Keep this file in sync with the mirror at
 // `src-tauri/plugins/tauri-plugin-native-bridge/ios/Sources/AppGroupBridge.swift`.
 // Two NSUserDefaults keys form the contract:
@@ -24,7 +24,7 @@
 import Foundation
 
 enum AppGroupBridge {
-  static let suiteName = "group.com.bilingify.readest"
+  static let suiteName = "group.com.yiwei.reader"
   static let groupsKey = "shareExtensionGroups"
   static let defaultGroupNameKey = "shareExtensionDefaultGroupName"
   static let pendingSavesKey = "shareExtensionPendingSaves"

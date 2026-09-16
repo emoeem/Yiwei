@@ -4,7 +4,7 @@
 #
 # Tauri's App Store export signs only the main app binary at archive time
 # (the build log shows `Using codesigning identity override: ""` and then
-# `Signing .../Readest.app/Readest` -- the main binary only). The embedded
+# `Signing .../Yiwei.app/Readest` -- the main binary only). The embedded
 # extensions therefore enter `xcodebuild -exportArchive` UNSIGNED, and the
 # export re-sign derives a MINIMAL entitlement set for each extension
 # (application-identifier, beta-reports-active, team-identifier, get-task-allow)
@@ -25,8 +25,8 @@
 set -euo pipefail
 
 IPA="${1:?usage: fix-ios-appstore-appgroup.sh <path-to-ipa>}"
-GROUP="group.com.bilingify.readest"
-EXTS=(ReadestWidget ShareExtension)
+GROUP="group.com.yiwei.reader"
+EXTS=(YiweiWidget ShareExtension)
 
 if [ ! -f "$IPA" ]; then
   echo "fix-ios-appstore-appgroup: IPA not found at $IPA" >&2
@@ -44,7 +44,7 @@ fi
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
 unzip -q "$IPA" -d "$WORK"
-APP="$WORK/Payload/Readest.app"
+APP="$WORK/Payload/Yiwei.app"
 
 # Re-sign a binary, preserving the entitlements the export already computed and
 # adding the App Group if it is missing.
@@ -67,7 +67,7 @@ resign_with_group() {
 for ext in "${EXTS[@]}"; do
   resign_with_group "$APP/PlugIns/$ext.appex" "$ext"
 done
-resign_with_group "$APP" "Readest"
+resign_with_group "$APP" "Yiwei"
 
 codesign --verify --deep --strict "$APP"
 

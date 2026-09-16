@@ -7,29 +7,29 @@ import Providers from '@/components/Providers';
 
 import '../styles/globals.css';
 
-const url = 'https://web.readest.com/';
-const title = 'Readest — Where You Read, Digest and Get Insight';
+const url = 'https://yiwei.invalid/';
+const title = 'Yiwei — A local-first reader for deep reading';
 const description =
-  'Discover Readest, the ultimate online ebook reader for immersive and organized reading. ' +
-  'Enjoy seamless access to your digital library, powerful tools for highlighting, bookmarking, ' +
-  'and note-taking, and support for multiple book views. ' +
-  'Perfect for deep reading, analysis, and understanding. Explore now!';
-const previewImage = 'https://cdn.readest.com/images/open_graph_preview_read_now.png';
+  'Yiwei is a local-first ebook reader for focused, immersive reading. ' +
+  'Your library, annotations and reading state live on your device; the cloud stays optional. ' +
+  'EPUB, PDF, MOBI, TXT and more, with highlighting, bookmarks and note-taking.';
+// Served from this deployment; the upstream CDN must not be referenced.
+const previewImage = '/icon.png';
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
   title: {
     default: title,
-    template: '%s | Readest',
+    template: '%s | Yiwei',
   },
   description,
   generator: 'Next.js',
   manifest: '/manifest.json',
-  keywords: ['epub', 'pdf', 'ebook', 'reader', 'readest', 'pwa'],
+  keywords: ['epub', 'pdf', 'ebook', 'reader', 'yiwei', 'pwa'],
   authors: [
     {
-      name: 'readest',
-      url: 'https://github.com/readest/readest',
+      name: 'Yiwei',
+      url: 'https://github.com/emoeem/readest',
     },
   ],
   icons: {
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    title: 'Readest',
+    title: 'Yiwei',
     statusBarStyle: 'default',
   },
   openGraph: {
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   },
   other: {
     'apple-mobile-web-app-capable': 'yes',
-    'twitter:domain': 'web.readest.com',
+    'twitter:domain': 'yiwei.invalid',
     'twitter:url': url,
   },
 };
