@@ -96,12 +96,14 @@ server/              自托管服务端（未开始）
   Markdown / HTML / TXT 的语义与索引。
 - **B2 差异化能力**：书源引擎、权限化插件宿主、Wenyi 翻译 Job、自托管同步服务端。
 
-详细进度、验证状态与待办见[路线图](implementation/ROADMAP.md)与[实现进度](implementation/README.md)。
+能做什么、还要做什么（逐项状态）见[功能清单](FEATURES.md)；详细进度、验证状态与待办见
+[路线图](implementation/ROADMAP.md)与[实现进度](implementation/README.md)。
 
 ## 文档地图
 
 | 想知道什么 | 看哪里 |
 | --- | --- |
+| 支持哪些功能、还要做什么 | [FEATURES.md](FEATURES.md) |
 | 为什么这么设计（完整调研与论证） | [architecture/RESEARCH_AND_ARCHITECTURE.md](architecture/RESEARCH_AND_ARCHITECTURE.md) |
 | 已拍板的架构决策 | [decisions/](decisions/)（ADR-0001～0007） |
 | 调研引用来源 | [research/EVIDENCE.md](research/EVIDENCE.md) |

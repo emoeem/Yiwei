@@ -4,8 +4,9 @@
 [调研与架构设计报告](../architecture/RESEARCH_AND_ARCHITECTURE.md) 和
 [ADR](../decisions/) 为准；本目录只描述实现事实，不替代设计文档。
 
-相关：[项目简介](../PROJECT.md)（这个项目要做什么）、[品牌化清单](BRANDING.md)（发布前必读）、
-[路线图](ROADMAP.md)、[Linux 桌面端排查](LINUX-DEV.md)（窗口空白 / GBM 报错）。
+相关：[项目简介](../PROJECT.md)（这个项目要做什么）、[功能清单](../FEATURES.md)（支持什么 / 还要做什么）、
+[品牌化清单](BRANDING.md)（发布前必读）、[路线图](ROADMAP.md)、
+[Linux 桌面端排查](LINUX-DEV.md)（窗口空白 / GBM 报错）。
 
 ## 流程说明
 

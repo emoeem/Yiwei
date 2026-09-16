@@ -21,6 +21,24 @@
 
 定位、目标用户、非目标与设计取舍的完整说明见 **[docs/PROJECT.md](docs/PROJECT.md)**。
 
+## 支持的功能
+
+**书籍格式**：EPUB、PDF、MOBI / AZW / AZW3、FB2、CBZ / ZIP、TXT、Markdown。
+
+| 方向 | 能力 |
+| --- | --- |
+| 阅读体验 | 翻页 / 滚动双模式、排版与主题自定义、代码语法高亮、阅读标尺与逐段模式、速读（RSVP）、并行阅读、书内与书架搜索、E-ink 模式、键盘导航与屏幕阅读器 |
+| 标注与笔记 | 高亮 / 书签 / 笔记、笔记本与导出、触控笔手写（上游在建） |
+| 查询与翻译 | 内置与自定义词典（Yomitan ZIP / RDICT / StarDict 等）、Wikipedia / Wiktionary、DeepL / Google / Azure / Yandex 全文翻译、AI 助手（需自备 key） |
+| 朗读与有声书 | Edge TTS / 系统 TTS / Web Speech、变速与句词高亮、EPUB 3 Media Overlay 跟读、本地有声书（MP3 / M4A / M4B）配对、Audiobookshelf |
+| 书库与集成 | 书库管理、文件关联打开、OPDS / Calibre、网页剪藏与网页小说抓取、浏览器扩展、LocalSend 局域传输、RSS 订阅转书、Readwise / Notion / Hardcover / BookOrbit |
+| 同步与备份 | 跨设备同步进度 / 标注 / 书签 / 书籍文件（后端可选 Google Drive / OneDrive / WebDAV / S3 / iCloud，需自备配置）、与 KOReader 同步（KOSync）、本地备份 |
+| 平台 | Windows / macOS / Linux / Android / iOS / Web（PWA） |
+
+**还要做什么**：PDF 进入自有文档模型、Markdown / HTML / TXT 的语义与索引（B1）；
+书源引擎、权限化插件宿主、翻译 Job、OCR 与漫画翻译、自托管同步服务端（B2）。
+逐项状态与说明见 **[docs/FEATURES.md](docs/FEATURES.md)**。
+
 ## 现在的状态
 
 | 阶段 | 内容 | 状态 |
@@ -50,6 +68,7 @@
 | 想知道什么 | 看哪里 |
 | --- | --- |
 | 这个项目要做什么 | [docs/PROJECT.md](docs/PROJECT.md) |
+| 支持哪些功能、还要做什么 | [docs/FEATURES.md](docs/FEATURES.md) |
 | 为什么这么设计（完整调研与论证） | [docs/architecture/RESEARCH_AND_ARCHITECTURE.md](docs/architecture/RESEARCH_AND_ARCHITECTURE.md) |
 | 已拍板的架构决策 | [docs/decisions/](docs/decisions/) |
 | 实现进度与验证方式 | [docs/implementation/README.md](docs/implementation/README.md) |
