@@ -109,6 +109,7 @@ server/              自托管服务端（未开始）
 | 当前阶段要做什么 | [implementation/ROADMAP.md](implementation/ROADMAP.md) |
 | 发布前的品牌化 / 去上游化清单 | [implementation/BRANDING.md](implementation/BRANDING.md) |
 | Linux 桌面端窗口空白、GBM 报错排查 | [implementation/LINUX-DEV.md](implementation/LINUX-DEV.md) |
+| 上游 Readest README 原文（下载渠道、赞助信息） | [upstream-readme.md](upstream-readme.md) |
 
 ## 本地跑起来
 
